@@ -1,6 +1,7 @@
 import React from 'react';
 
-class AddVeggieForm extends React.Component {
+class 
+AddVeggieForm extends React.Component {
   createVeggie(event) {
     event.preventDefault();
     console.log('On va ajouter des légumes!');

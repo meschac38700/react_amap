@@ -469,6 +469,11 @@ ul.order li span.count span {
       -ms-flex-align: center;
           align-items: center;
 }
+.article_total
+{
+  display: block;
+  font-size: 1.5rem;
+}
 .menu-veggie .price {
   font-size: 1.4rem;
   -webkit-box-pack: end;

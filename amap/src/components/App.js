@@ -6,12 +6,19 @@ import Order from './Order';
 import Veggie from './Veggie';
 import Inventory from './Inventory';
 import sampleVeggies from '../sample-veggies';
-
+//import * as firebase from "firebase";
 import {formatPrice} from '../helpers';
 class App extends React.Component {
 
   constructor() {
     super();
+    /*var config = {
+      apiKey: "<API_KEY>",
+      authDomain: "<PROJECT_ID>.firebaseapp.com",
+      databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
+      storageBucket: "<BUCKET>.appspot.com",
+    };
+    firebase.initializeApp(config); */
     //console.log(localStorage);
     this.addVeggie = this.addVeggie.bind(this);
     this.get_nbr_veggie_in_order = this.get_nbr_veggie_in_order.bind(this);
@@ -27,6 +34,9 @@ class App extends React.Component {
       total_article: 0
     };
   }
+
+
+
 
   // Ajouter un veggie dans le menu
   addVeggie(veggie) 
@@ -45,9 +55,20 @@ class App extends React.Component {
   // Chargement des veggies recuperés depuis le fichier sample-veggies.js
   loadSamples() 
   {
+    const tmp_veggies = this.state.veggies;
+    console.log("tmp_veggie");
+    console.log(tmp_veggies);
+    
+    for( var key in sampleVeggies)
+    {
+      tmp_veggies[`${key}`] = sampleVeggies[`${key}`]
+    }
     this.setState({
-      veggies: sampleVeggies
+      veggies: tmp_veggies
     });
+    console.log("new state:")
+    console.log(this.state)
+
   }
 
 
@@ -184,9 +205,6 @@ class App extends React.Component {
       </div>
     )
   }
-
-  /*
-*/
 }
 
 export default App;

@@ -5,7 +5,7 @@ class AddVeggieInOrder extends React.Component {
     if(this.props.veggie.status == "available")
     {
       return (
-        <li>
+  			<li>
           <strong>{this.props.veggie.name} x {this.props.compteur}</strong>{ this.props.format(this.props.veggie.price*this.props.compteur) }
           <button onClick={(e)=> this.props.delete_in_order( this.props.index, this.props.veggie )} >X</button>
         </li>

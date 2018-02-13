@@ -5,6 +5,7 @@ import Avatar from 'material-ui/Avatar';
 import { withStyles } from 'material-ui/styles';
 import Divider from 'material-ui/Divider';
 import ImageIcon from 'material-ui-icons/Image';
+import LazyLoad from 'react-lazyload'
 class Veggie extends React.Component {
 
   constructor(props){
@@ -33,7 +34,9 @@ class Veggie extends React.Component {
           <List>
               <ListItem>
                 <Avatar className="avatar">
+                {/*<LazyLoad height={200} once  offset={100}>*/}
                   <img src={details.image} alt={details.name}/>
+                  {/*</LazyLoad>*/}
                 </Avatar>
                 <ListItemText className="listItemText" primary={details.name+ " "+ this.props.formatPrice(details.price)} secondary={details.desc} />
               </ListItem>

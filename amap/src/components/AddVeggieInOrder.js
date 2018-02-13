@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
+import Divider from 'material-ui/Divider';
 class AddVeggieInOrder extends React.Component {
   render() {
     if(this.props.veggie.status == "available")
@@ -23,7 +24,7 @@ class AddVeggieInOrder extends React.Component {
           <IconButton aria-label="Delete">
             <DeleteIcon onClick={(e)=> this.props.delete_in_order( this.props.index, this.props.veggie )} />
           </IconButton>
-          
+          <Divider inset />
         </li>
       )
     }

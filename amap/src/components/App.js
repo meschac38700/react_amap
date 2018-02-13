@@ -3,6 +3,7 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import StorePicker from './StorePicker';
 import Header from './Header';
 import Order from './Order';
+import LazyLoad from 'react-lazyload';
 import Veggie from './Veggie';
 import Inventory from './Inventory';
 import sampleVeggies from '../sample-veggies';
@@ -321,7 +322,8 @@ veggieAlreadyAdded( veggie )
         <div className="menu">
           <Header tagline="Des bons legumes" />
           <List>
-            {
+
+            {// boucle sur les veggies present dans le state 
               Object
                 .keys(this.state.veggies)
                 .map(key => <Veggie key={key} index={key} formatPrice= {formatPrice} add_in_order={this.add_in_order} details={this.state.veggies[key]}/>)              

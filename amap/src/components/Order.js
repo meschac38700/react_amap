@@ -6,14 +6,14 @@ class Order extends React.Component {
   render() {
     return (
     	<div >
-	    	<h2>Votre commande</h2>
+	    	<h2>Mon panier</h2>
 	        <ul className="order">
 	            {
 	              Object
 	                .keys(this.props.state.order)
 	                .map(key =><AddVeggieInOrder delete_in_order={this.props.delete_in_order} format={this.props.formatPrice}  compteur={this.props.get_nbr_veggie_in_order(key)} index={key} key={key} veggie={this.props.state.order[key]}/>)              
 	            }
-	            <span className="article_total">Nombre d'article total : {this.props.state.total_article}</span>
+	            <li className="article_total"><strong>Nombre d'article total : </strong>{this.props.state.total_article}</li>
 	            <TotalPriceVeggie format = {this.props.formatPrice} total_price={this.props.state.total_price}/>                                
 	        </ul>
 		</div>

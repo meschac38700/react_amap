@@ -5,7 +5,7 @@ class Order extends React.Component {
 
   render() {
     return (
-    	<div className="order-wrap">
+    	<div >
 	    	<h2>Votre commande</h2>
 	        <ul className="order">
 	            {

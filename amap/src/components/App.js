@@ -1,11 +1,12 @@
 import React from 'react';
-
+import List, { ListItem, ListItemText } from 'material-ui/List';
 import StorePicker from './StorePicker';
 import Header from './Header';
 import Order from './Order';
 import Veggie from './Veggie';
 import Inventory from './Inventory';
 import sampleVeggies from '../sample-veggies';
+import { Container, Row, Col } from 'reactstrap';
 //import * as firebase from "firebase";
 
 import {formatPrice} from '../helpers';
@@ -27,6 +28,7 @@ class App extends React.Component {
     this.loadSamples = this.loadSamples.bind(this);
     this.add_in_order = this.add_in_order.bind(this); 
     this.delete_in_order = this.delete_in_order.bind(this);
+    this.veggieAlreadyAdded = this.veggieAlreadyAdded.bind(this);
     this.state = {
       veggies: {},
       order: {},
@@ -34,6 +36,20 @@ class App extends React.Component {
       compteur: {},
       total_article: 0
     };
+  }
+        
+veggieAlreadyAdded( veggie )
+  {
+    var vraiOuFaux = false;
+    const veggies = {...this.state.veggies};
+    for(var key in veggies)
+    {
+      if( veggies[`${key}`].name.toLowerCase() == veggie.name.toLowerCase())
+      {
+        vraiOuFaux = true;
+      } 
+    }
+    return vraiOuFaux;
   }
   // Ajouter un veggie dans le menu
   addVeggie(veggie) 
@@ -43,8 +59,15 @@ class App extends React.Component {
     const veggies = {...this.state.veggies};
     // ajout de notre nouveau veggie
     //console.log(veggies);
-    const timestamp = Date.now();
-    veggies[`veggie-${timestamp}`] = veggie;
+    
+    if (!this.veggieAlreadyAdded(veggie))
+    {
+      const timestamp = Date.now();
+      veggies[`veggie-${timestamp}`] = veggie;
+    }else
+    {
+      alert("Veggie already in stock !");
+    }
     // mise à jour du state
     this.setState({ veggies });
   }
@@ -291,21 +314,19 @@ class App extends React.Component {
     localStorage.setItem('total_article', JSON.stringify(this.state.total_article));
   }
 
-
->>>>>>> master
   // Retourne la vue
   render() {
     return (
       <div className="amap">
         <div className="menu">
           <Header tagline="Des bons legumes" />
-          <ul className="list-of-veggies">
+          <List>
             {
               Object
                 .keys(this.state.veggies)
-                .map(key => <Veggie key={key} index={key} add_in_order={this.add_in_order} details={this.state.veggies[key]}/>)              
+                .map(key => <Veggie key={key} index={key} formatPrice= {formatPrice} add_in_order={this.add_in_order} details={this.state.veggies[key]}/>)              
             }
-          </ul>
+          </List>
         </div>
             <Order delete_in_order={this.delete_in_order} state ={this.state} formatPrice= {formatPrice}  get_nbr_veggie_in_order={this.get_nbr_veggie_in_order} />
   

@@ -1,5 +1,10 @@
 import React from 'react';
-
+import Button from "material-ui/Button";
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
+import { withStyles } from 'material-ui/styles';
+import Divider from 'material-ui/Divider';
+import ImageIcon from 'material-ui-icons/Image';
 class Veggie extends React.Component {
 
   constructor(props){
@@ -13,28 +18,31 @@ class Veggie extends React.Component {
     //console.log(this.props.details)
     if( this.props.details.status == "available")
     {
-      return <button onClick={(e)=> this.props.add_in_order( this.props.index, this.props.details ) } >"Ajouter au panier"</button>;
+      return <Button variant="raised" color="primary" onClick={(e)=> this.props.add_in_order( this.props.index, this.props.details ) } >"Ajouter au panier"</Button>;
     }
     else
     {
-      return <button disabled='true'>"Plus en stock !"</button>;
+      return  <Button variant="raised" color="secondary" disabled>Plus en stock !</Button> 
     }
   }
 
   render() {
   	const {details} = this.props;
         return (
-      <li className="menu-veggie">
-        <img src={details.image} alt={details.name}/>
-        <h3 className="veggie-name" ref={(input) => this.name = input} >
-          {details.name}
-          <span className="price" ref={(input) => this.price = input}>{details.price}</span>
-        </h3>
-        <p>{details.desc}</p>
-
-        {this.veggie_available()}
-        
-      </li>
+        <div>
+          <List>
+              <ListItem>
+                <Avatar className="avatar">
+                  <img src={details.image} alt={details.name}/>
+                </Avatar>
+                <ListItemText className="listItemText" primary={details.name+ " "+ this.props.formatPrice(details.price)} secondary={details.desc} />
+              </ListItem>
+              <li>
+                <Divider inset />
+              </li>
+            {this.veggie_available()}
+          </List>
+      </div>
     )
   }
 }

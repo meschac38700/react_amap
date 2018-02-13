@@ -1,36 +1,48 @@
 import React from 'react';
 
+import {Form, FormGroup, Label, Input, FormText } from 'reactstrap'; 
+import Button from "material-ui/Button";
 class 
 AddVeggieForm extends React.Component {
+  constructor(props)
+  {
+    super(props);
+    this.createVeggie = this.createVeggie.bind(this);
+  }
+
   createVeggie(event) {
     event.preventDefault();
     console.log('On va ajouter des légumes!');
+    //event.target.selectFavorite.value
     // On stocke les valeurs du form dans une variable veggie
     const veggie = {
-      name: this.name.value,
-      price: this.price.value,
-      status: this.status.value,
-      desc: this.desc.value,
-      image: this.image.value,
+      name: event.target.name.value,
+      price: event.target.price.value,
+      status: event.target.status.value,
+      desc: event.target.desc.value,
+      image: event.target.image.value,
     }
+    console.log(veggie);
     // On envoie cette variable via des props à la méthode addVeggie()
     this.props.addVeggie(veggie);
-    this.veggieForm.reset();
+    //this.veggieForm.reset();
+        //"default","inherit","primary","secondary"
   }
 
   render() {
     return (
-      <form ref={(input) => this.veggieForm = input} className="veggie-edit" onSubmit={(e) => this.createVeggie(e)}>
-        <input ref={(input) => this.name = input} type="text" placeholder="Veggie Name" />
-        <input ref={(input) => this.price = input} type="text" placeholder="Veggie Price" />
-        <select ref={(input) => this.status = input}>
+      <Form name ="veggieForm" className="veggie-edit" onSubmit={this.createVeggie}>
+        
+          <Input name="name" type="text" placeholder="Veggie Name" />
+          <Input name="price" type="text" placeholder="Veggie Price" />
+          <Input name="status" type="select">
           <option value="available">Frais!</option>
           <option value="unavailable">Plus en stock!</option>
-        </select>
-        <textarea ref={(input) => this.desc = input} placeholder="Veggie Desc" ></textarea>
-        <input ref={(input) => this.image = input} type="text" placeholder="Veggie Image" />
-        <button type="submit">+ Ajouter un article</button>
-      </form>
+          </Input>
+          <Input type="textarea" className="desc" name="desc" placeholder="Veggie Desc" ></Input>
+          <Input name="image" type="text" placeholder="Veggie Image" />
+          <Button color="secondary" type="submit">+ Ajouter un article</Button>
+      </Form>
     )
   }
 }

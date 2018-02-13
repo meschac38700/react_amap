@@ -6,6 +6,20 @@
   max-height: 0;
   padding: 0 !important;
 }
+
+.avatar{
+  width: 100px !important;
+  height: 100px!important;
+}
+.desc{
+  resize: none;
+}
+.listItemText h3{
+  font-size: 2rem;
+}
+.listItemText p{
+ font-size: 1.5rem; 
+}
 .order-enter.order-enter-active {
   max-height: 60px;
   padding: 2rem 0 !important;
@@ -330,7 +344,7 @@ header.top h3:after {
   -ms-flex-negative: 1;
       flex-shrink: 1;
   -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
+      flex-basis: 30%;
 }
 .amap > *:nth-child(2) {
   border-left: 0;
@@ -341,7 +355,7 @@ header.top h3:after {
   -ms-flex-negative: 1;
       flex-shrink: 1;
   -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
+      flex-basis: 25%;
 }
 ul {
   list-style: none;
@@ -504,16 +518,18 @@ input[type=submit][disabled] {
   color: #d12028;
   background: #fff;
   border-color: #d12028;
-  -webkit-transform: rotate(-10deg) scale(2) translateX(50%) translateY(-50%);
-          transform: rotate(-10deg) scale(2) translateX(50%) translateY(-50%);
+  /* -webkit-transform: rotate(-10deg) scale(2) translateX(50%) translateY(-50%);
+          transform: rotate(-10deg) scale(2) translateX(50%) translateY(-50%); */
 }
 button[disabled]:hover,
 input[type=submit][disabled]:hover {
   color: #d12028;
   cursor: not-allowed;
 }
-button:hover,
-input[type=submit]:hover,
+ListItemText {
+  font-size: 30px;
+}
+
 button:focus,
 input[type=submit]:focus {
   color: #fff;

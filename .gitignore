@@ -1,5 +1,5 @@
 node_modules/
 amap/node_modules/
-solutions-pas-a-pas/*
+./solutions-pas-a-pas/
 *.zip
 .DS_Store

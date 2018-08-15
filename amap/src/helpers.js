@@ -1,4 +1,8 @@
 export function formatPrice(cents) {
+  if( cents < 0 )
+  {
+    return `0.0 €`;
+  }
   return `${(cents / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')} €`;
 }
 

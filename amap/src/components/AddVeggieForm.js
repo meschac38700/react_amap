@@ -22,11 +22,8 @@ AddVeggieForm extends React.Component {
       desc: event.target.desc.value,
       image: event.target.image.value,
     }
-    console.log(veggie);
     // On envoie cette variable via des props à la méthode addVeggie()
     this.props.addVeggie(veggie);
-    //this.veggieForm.reset();
-        //"default","inherit","primary","secondary"
   }
 
   render() {

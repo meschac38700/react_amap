@@ -1,16 +1,11 @@
 import React from 'react';
 import AddVeggieForm from './AddVeggieForm';
 import Button from "material-ui/Button";
-class Inventory extends React.Component {
-  render() {
-    return (
-      <div>
+
+const Inventory = (props) => <div>
         <h2>Inventory</h2>
-        <AddVeggieForm addVeggie={this.props.addVeggie}/>
-        <Button variant="raised" color="primary" onClick={this.props.loadSamples}>Charger des légumes</Button>
+        <AddVeggieForm addVeggie={props.addVeggie}/>
+        <Button variant="raised" color="primary" onClick={props.loadSamples}>Charger des légumes</Button>
       </div>
-    )
-  }
-}
 
 export default Inventory;

@@ -15,14 +15,7 @@ class App extends React.Component {
 
   constructor() {
     super();
-    /*var config = {
-      apiKey: "<API_KEY>",
-      authDomain: "<PROJECT_ID>.firebaseapp.com",
-      databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
-      storageBucket: "<BUCKET>.appspot.com",
-    };
-    firebase.initializeApp(config); */
-    //console.log(localStorage);
+
     this.addVeggie = this.addVeggie.bind(this);
     this.get_nbr_veggie_in_order = this.get_nbr_veggie_in_order.bind(this);
     this.increment_nbr_veggie_in_order = this.increment_nbr_veggie_in_order.bind(this)
@@ -52,6 +45,7 @@ veggieAlreadyAdded( veggie )
     }
     return vraiOuFaux;
   }
+
   // Ajouter un veggie dans le menu
   addVeggie(veggie) 
   {
@@ -59,7 +53,6 @@ veggieAlreadyAdded( veggie )
     // on fait une copie de notre state
     const veggies = {...this.state.veggies};
     // ajout de notre nouveau veggie
-    //console.log(veggies);
     
     if (!this.veggieAlreadyAdded(veggie))
     {
@@ -77,9 +70,6 @@ veggieAlreadyAdded( veggie )
   loadSamples() 
   {
     const tmp_veggies = this.state.veggies;
-    console.log("tmp_veggie");
-    console.log(tmp_veggies);
-    
     for( var key in sampleVeggies)
     {
       tmp_veggies[`${key}`] = sampleVeggies[`${key}`]
@@ -87,12 +77,8 @@ veggieAlreadyAdded( veggie )
     this.setState({
       veggies: tmp_veggies
     });
-    console.log("new state:")
-    console.log(this.state)
 
   }
-
-
 
   //  retourne le nombre de fois qu'un même veggié a été ajouté dans le order (le panier)
   get_nbr_veggie_in_order( key )
@@ -128,18 +114,14 @@ veggieAlreadyAdded( veggie )
     var total_article = this.state.total_article *1;
     total_article += 1*1;
     this.setState({total_article});
-    //console.log(key);
-    //console.log(veggie)
     // Copie du state order
     const order = {...this.state.order};
     order[`${key}`] = veggie;
     this.setState({order}); 
     var total_price = this.state.total_price*1;
-    total_price += veggie.price*1;              
-    console.log("Prix total : "+total_price);
+    total_price += veggie.price*1;
     this.setState({total_price});
-    this.increment_nbr_veggie_in_order( key );
-    console.log(this.state) 
+    this.increment_nbr_veggie_in_order( key ); 
   }
   // Supprimer un veggie dans le order
   delete_in_order(index, veggie)
@@ -158,53 +140,12 @@ veggieAlreadyAdded( veggie )
     this.setState({order});
     
     var total_price = this.state.total_price*1;
-    total_price -= veggie.price*1*this.get_nbr_veggie_in_order(index)*1;              
-    //console.log("Prix total : "+total_price);
+    total_price -= veggie.price*1*this.get_nbr_veggie_in_order(index)*1; 
     this.setState({total_price});
     
     this.remove_nbr_veggie_in_state( index );
-    console.log(this.state) 
 
   }
-
-  // Sauvegarde des informations modifée en pendant l'utilisateur de l'app
-  componentWillUpdate(nextProps, nextState){
-    //console.log("Props et state :");
-    //console.log(nextProps);
-    //console.log(nextState);
-    //console.log("componentWillUpdate");
-    localStorage.setItem('order', JSON.stringify(nextState.order) );
-    //localStorage.setItem('veggies', JSON.stringify(nextState.veggies));
-    localStorage.setItem('total_price', JSON.stringify(nextState.total_price));
-    localStorage.setItem('compteur', JSON.stringify(nextState.compteur));
-    localStorage.setItem('total_article', JSON.stringify(nextState.total_article));
-    localStorage.setItem('props', JSON.stringify(nextProps));
-    //console.log(this.state.order); 
-  }
-  
-  // Recharge les informations en stockage locale si elles existent
-  componentWillMount(){
-    //console.log("state");
-    //console.log(this.state);
-    //console.log("componentWillMount");
-    localStorage.getItem('order') && this.setState({order: JSON.parse(localStorage.getItem('order'))});
-    //localStorage.getItem('veggies') && this.setState({veggies: JSON.parse(localStorage.getItem('veggies'))});
-    localStorage.getItem('total_price') && this.setState({total_price: JSON.parse(localStorage.getItem('total_price'))});
-    localStorage.getItem('compteur') && this.setState({compteur: JSON.parse(localStorage.getItem('compteur'))});
-    localStorage.getItem('total_article') && this.setState({total_article: JSON.parse(localStorage.getItem('total_article'))});
-  }
-
-  // Sauvegarde des informations lorsqu'on quitte l'app 
-  componentWillUnmount(){
-    //console.log("componentWillUnmount");
-    localStorage.setItem('order', JSON.stringify(this.state.order));
-    //localStorage.setItem('veggies', JSON.stringify(this.state.veggies));
-    localStorage.setItem('total_price', JSON.stringify(this.state.total_price));
-    localStorage.setItem('compteur', JSON.stringify(this.state.compteur));
-    localStorage.setItem('total_article', JSON.stringify(this.state.total_article));
-  }
-
-
   //  retourne le nombre de fois qu'un même veggié a été ajouté dans le order (le panier)
   get_nbr_veggie_in_order( key )
   {
@@ -233,24 +174,20 @@ veggieAlreadyAdded( veggie )
   }
 
 
-  // Ajouter un vaggier dans le order
+  // Ajouter un veggie dans le order
   add_in_order(key, veggie )
   {
     var total_article = this.state.total_article *1;
     total_article += 1*1;
     this.setState({total_article});
-    //console.log(key);
-    //console.log(veggie)
     // Copie du state order
     const order = {...this.state.order};
     order[`${key}`] = veggie;
     this.setState({order}); 
     var total_price = this.state.total_price*1;
-    total_price += veggie.price*1;              
-    console.log("Prix total : "+total_price);
+    total_price += veggie.price*1;
     this.setState({total_price});
     this.increment_nbr_veggie_in_order( key );
-    console.log(this.state) 
   }
   // Supprimer un veggie dans le order
   delete_in_order(index, veggie)
@@ -269,37 +206,24 @@ veggieAlreadyAdded( veggie )
     this.setState({order});
     
     var total_price = this.state.total_price*1;
-    total_price -= veggie.price*1*this.get_nbr_veggie_in_order(index)*1;              
-    //console.log("Prix total : "+total_price);
+    total_price -= veggie.price*1*this.get_nbr_veggie_in_order(index)*1;
     this.setState({total_price});
     
     this.remove_nbr_veggie_in_state( index );
-    console.log(this.state) 
 
   }
-
   // Sauvegarde des informations modifée en pendant l'utilisateur de l'app
   componentWillUpdate(nextProps, nextState){
-    //console.log("Props et state :");
-    //console.log(nextProps);
-    //console.log(nextState);
-    //console.log("componentWillUpdate");
     localStorage.setItem('order', JSON.stringify(nextState.order) );
-    //localStorage.setItem('veggies', JSON.stringify(nextState.veggies));
     localStorage.setItem('total_price', JSON.stringify(nextState.total_price));
     localStorage.setItem('compteur', JSON.stringify(nextState.compteur));
     localStorage.setItem('total_article', JSON.stringify(nextState.total_article));
     localStorage.setItem('props', JSON.stringify(nextProps));
-    //console.log(this.state.order); 
   }
   
   // Recharge les informations en stockage locale si elles existent
   componentWillMount(){
-    //console.log("state");
-    //console.log(this.state);
-    //console.log("componentWillMount");
     localStorage.getItem('order') && this.setState({order: JSON.parse(localStorage.getItem('order'))});
-    //localStorage.getItem('veggies') && this.setState({veggies: JSON.parse(localStorage.getItem('veggies'))});
     localStorage.getItem('total_price') && this.setState({total_price: JSON.parse(localStorage.getItem('total_price'))});
     localStorage.getItem('compteur') && this.setState({compteur: JSON.parse(localStorage.getItem('compteur'))});
     localStorage.getItem('total_article') && this.setState({total_article: JSON.parse(localStorage.getItem('total_article'))});
@@ -307,9 +231,7 @@ veggieAlreadyAdded( veggie )
 
   // Sauvegarde des informations lorsqu'on quitte l'app 
   componentWillUnmount(){
-    //console.log("componentWillUnmount");
     localStorage.setItem('order', JSON.stringify(this.state.order));
-    //localStorage.setItem('veggies', JSON.stringify(this.state.veggies));
     localStorage.setItem('total_price', JSON.stringify(this.state.total_price));
     localStorage.setItem('compteur', JSON.stringify(this.state.compteur));
     localStorage.setItem('total_article', JSON.stringify(this.state.total_article));
@@ -337,9 +259,6 @@ veggieAlreadyAdded( veggie )
       </div>
     )
   }
-
-  /*
-*/
 }
 
 export default App;

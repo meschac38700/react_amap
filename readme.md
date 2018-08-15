@@ -6,8 +6,7 @@ Manipulation de la bibliotheque JS, React.
 
 Pour commencer,
 1. cd dans `amap`
-2. Lancez `npm install` 
-3. Suivez le cours :)
+2. Lancez `npm install`
 
 
 Les commandes disponibles sont
